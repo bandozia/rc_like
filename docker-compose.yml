@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_DB: "rclike_db"
+      POSTGRES_USER: "rclike"
+      POSTGRES_PASSWORD: "verystrongpass"
+    ports:
+      - "5432:5432"
+
+  rclike.api:
+    image: ${DOCKER_REGISTRY-}rclikeapi
+    build:
+      context: .
+      dockerfile: RCLike.API/Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "80:80"

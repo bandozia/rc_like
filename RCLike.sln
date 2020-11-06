@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLike.API", "RCLike.API\RCLike.API.csproj", "{7F66ED4C-07A3-451B-8739-0DFD80932387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLike.Data", "RCLike.Data\RCLike.Data.csproj", "{9843B82E-4EF0-4B72-A064-4CFD8115528A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1E0ED9CF-481B-426D-B01A-700CCFAD9619}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F66ED4C-07A3-451B-8739-0DFD80932387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F66ED4C-07A3-451B-8739-0DFD80932387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F66ED4C-07A3-451B-8739-0DFD80932387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F66ED4C-07A3-451B-8739-0DFD80932387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9843B82E-4EF0-4B72-A064-4CFD8115528A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9843B82E-4EF0-4B72-A064-4CFD8115528A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9843B82E-4EF0-4B72-A064-4CFD8115528A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9843B82E-4EF0-4B72-A064-4CFD8115528A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0ED9CF-481B-426D-B01A-700CCFAD9619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0ED9CF-481B-426D-B01A-700CCFAD9619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0ED9CF-481B-426D-B01A-700CCFAD9619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0ED9CF-481B-426D-B01A-700CCFAD9619}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91542ED2-453E-4ADB-AED8-2D62E9C44D34}
+	EndGlobalSection
+EndGlobal
