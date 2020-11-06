@@ -12,28 +12,38 @@ namespace RCLike.Data.Service
     {
 
         private readonly IUrlRepository _urlRepository;
+        private readonly ITokenService _tokenService;
+        private readonly ILikerReository _likerReository;
 
-        public LikeService(IUrlRepository urlRepository)
+        public LikeService(IUrlRepository urlRepository, ITokenService tokenService, ILikerReository likerReository)
         {
             _urlRepository = urlRepository;
+            _tokenService = tokenService;
+            _likerReository = likerReository;
         }
 
-        public async Task DoLike(string url, AppUser user)
-        {
-            //TODO: validate url before insert
-            //TODO: check if user already liked
+        public async Task DoLike(string url, string token)
+        {            
+            string email = _tokenService.DecodeToken(token);
             
+            if (string.IsNullOrEmpty(email))
+                throw new UnauthorizedAccessException("invalid token");
 
+            var liker = await _likerReository.GetByEmailAsync(email) ?? new Liker { Email = email };
+            
+            if (liker.HasLiked(url))
+                throw new UnauthorizedAccessException("user already liked this url");
+            
             var urlSource = await _urlRepository.GetByUrlAsync(url);
             if (urlSource != null)
             {
-                urlSource.AddUserWhoLiked(user);
+                urlSource.AddUserWhoLiked(liker);
                 await _urlRepository.UpdateAsync(urlSource);
             }
             else
             {
                 var newUrl = new UrlSource { Url = url };
-                newUrl.AddUserWhoLiked(user);
+                newUrl.AddUserWhoLiked(liker);
                 await _urlRepository.InsertAsync(newUrl);
             }
         }
@@ -43,7 +53,7 @@ namespace RCLike.Data.Service
             //TODO: load from cashe cache if exists
             var urlSource = await _urlRepository.GetByUrlAsync(url);
             if (urlSource != null)
-                return urlSource.UsersWhoLiked?.Count ?? 0;
+                return urlSource.Likers?.Count ?? 0;
             else
                 return -1;
         }

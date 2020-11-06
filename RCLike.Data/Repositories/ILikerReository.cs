@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RCLike.Data.Repositories
 {
-    public interface IUserReository
+    public interface ILikerReository
     {
-        public Task<AppUser> GetByIdEmailAsync(string email);
-        public Task Insert(AppUser user);
+        public Task<Liker> GetByEmailAsync(string email);
+        public Task Insert(Liker user);
     }
 }

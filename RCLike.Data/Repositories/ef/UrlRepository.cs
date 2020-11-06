@@ -17,7 +17,7 @@ namespace RCLike.Data.Repositories.ef
 
         public async Task<UrlSource> GetByUrlAsync(string url)
         {
-            return await DbSet.Include(u => u.UsersWhoLiked).SingleOrDefaultAsync(u => u.Url == url);            
+            return await DbSet.Include(u => u.Likers).SingleOrDefaultAsync(u => u.Url == url);            
         }
 
         public async Task InsertAsync(UrlSource url)
@@ -26,9 +26,10 @@ namespace RCLike.Data.Repositories.ef
             await Context.SaveChangesAsync();            
         }
 
-        public Task UpdateAsync(UrlSource url)
+        public async Task UpdateAsync(UrlSource url)
         {
-            throw new NotImplementedException();
+            DbSet.Update(url);
+            await Context.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -8,9 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RCLike.API.Service.Extensions;
 using RCLike.Data.Contexts;
 using RCLike.Data.Repositories;
 using RCLike.Data.Repositories.ef;
@@ -34,7 +37,9 @@ namespace RCLike.API
 
             services.AddDbContext<AppDbContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("default")));
 
-            services.AddScoped<IUserReository, UserRepository>();
+            services.AddScoped(AuthFactory.JWTTokenService);
+
+            services.AddScoped<ILikerReository, LikerRepository>();
             services.AddScoped<IUrlRepository, UrlRepository>();
 
             services.AddTransient<ILikeService, LikeService>();
@@ -50,7 +55,13 @@ namespace RCLike.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RC Like feature API"));
             }
 
-            app.UseRouting();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "static", "dist")),
+                RequestPath = "/scripts"
+            });
+
+            app.UseRouting();            
             app.UseAuthorization();
 
             dbContext.Database.EnsureCreated();

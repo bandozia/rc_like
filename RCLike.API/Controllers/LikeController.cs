@@ -14,12 +14,10 @@ namespace RCLike.API.Controllers
     public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
-        private readonly IUserReository __userRepo;
-
-        public LikeController(ILikeService likeService, IUserReository userRepo)
+        
+        public LikeController(ILikeService likeService, ITokenService tokenService)
         {
-            _likeService = likeService;
-            __userRepo = userRepo;
+            _likeService = likeService;            
         }
 
         [HttpGet("count")]
@@ -33,14 +31,19 @@ namespace RCLike.API.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Like(string url, [FromHeader] string token)
+        [HttpGet("like")]
+        public async Task<IActionResult> Like([FromQuery] string url, [FromQuery] string token)
         {
-            //test
-            var user = await __userRepo.GetByIdEmailAsync("test@user.com");
+            try
+            {
+                await _likeService.DoLike(url, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
 
-            await _likeService.DoLike(url, user);
-            return Ok(token);
         }
                 
     }

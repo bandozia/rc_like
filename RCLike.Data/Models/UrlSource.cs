@@ -8,12 +8,13 @@ namespace RCLike.Data.Models
     {
         public string Url { get; set; }
 
-        public virtual ICollection<AppUser> UsersWhoLiked { get; private set; }
+        public virtual ICollection<Liker> Likers { get; private set; }
 
-        public void AddUserWhoLiked(AppUser user)
+        public void AddUserWhoLiked(Liker liker)
         {
-            UsersWhoLiked = UsersWhoLiked ?? new HashSet<AppUser>();
-            UsersWhoLiked.Add(user);                        
+            Likers = Likers ?? new HashSet<Liker>();
+            Likers.Add(liker);                        
         }
+              
     }
 }

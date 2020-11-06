@@ -8,7 +8,7 @@ namespace RCLike.Data.Service
 {
     public interface ILikeService
     {
-        public Task DoLike(string url, AppUser user);
+        public Task DoLike(string url, string token);
         public Task<int> GetLikeCount(string url);
         
     }
