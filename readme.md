@@ -52,7 +52,7 @@ include the block below on any page that should render the button and the count 
 buildLike() should called when the document is ready.
 
 ### About performance and cache
-Counting likes is probably a much more frequent operation than liking, so it makes sense to use a cache system for counting as long as it is highly segmented. Currently the cache is made by storing the urls as a key and only the total number of likes as a value. The counter will only consult the database if it does not find the key in cache, and having a result the bank will store the value for the key. New likes will invalidate the cache for just that url.
+Counting likes is probably a much more frequent operation than liking, so it makes sense to use a cache system for counting as long as it is highly segmented. Currently the cache is made by storing the urls as a key and only the total number of likes as a value. The counter will only consult the database if it does not find the key in cache, and having a result will store the value for the key in cache. New likes will invalidate the cache for just that url.
 Using redis as a provider for distributed cache it is possible to obtain a performance considerably superior to the alternative of making new queries in the database for every request.
 
 On the database side, it is possible to retrieve likes by url, which is faster for counting. It is also possible to retrieve urls liked by user, which is faster for checking url already liked
