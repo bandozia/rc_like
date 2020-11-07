@@ -19,8 +19,7 @@ In this scenario, the service must have its own load balancer. The API would be 
 In this scenario, horizontally scaling only the API would not be enough, since the ability to render the button would also depend on the requester's ability to render its own content. It would be more appropriate to create deployments in pairs of content provider and like functionality, with the load balancer before these deployments
 
 ### How to initialize
-It is necessary to have the docker installed. In the solution folder, run a **"docker-compose up"** or open the solution in Visual Studio and run the docker compose project.
-Certifique-se de que nenhum outro programa está usando a porta 80 localmente. 
+It is necessary to have the docker installed. In the solution folder, run a **"docker-compose up"** or open the solution in Visual Studio and run the docker compose project. Make sure that no other programs are using port 80 locally. 
 
 ### How to use
 #### Testing endpoints
