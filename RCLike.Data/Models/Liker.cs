@@ -11,6 +11,7 @@ namespace RCLike.Data.Models
     {
         [MaxLength(200)]
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         
         [JsonIgnore]

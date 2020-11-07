@@ -18,7 +18,9 @@ function likeButton(el: HTMLElement, token: string = null): void {
             }
         }
         xhr.send();
-    }    
+    } else {
+        el.appendChild(buildLikedDiv());
+    }
     
     const count = buildLikeCount();
     el.appendChild(count);
@@ -36,6 +38,8 @@ function buildLikeCount(): HTMLDivElement {
     xhr.onload = () => {
         if (xhr.status == 200) {
             countSpan.innerHTML = xhr.responseText;
+        } else if (xhr.status == 404) {
+            countSpan.innerHTML = "0";
         }
     }
     xhr.send();

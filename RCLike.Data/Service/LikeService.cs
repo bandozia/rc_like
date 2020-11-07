@@ -84,7 +84,7 @@ namespace RCLike.Data.Service
             var likerEmail = _tokenService.DecodeToken(token);
             if (likerEmail != null)
             {
-                var liker = await _likerReository.GetByEmailAsync(likerEmail);
+                var liker = await _likerReository.GetByEmailAsync(likerEmail);                
                 return new LikerValidation
                 {
                     IsValid = true,

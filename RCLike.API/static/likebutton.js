@@ -19,6 +19,9 @@ function likeButton(el, token) {
         };
         xhr_1.send();
     }
+    else {
+        el.appendChild(buildLikedDiv());
+    }
     var count = buildLikeCount();
     el.appendChild(count);
     mainElement = el;
@@ -32,6 +35,9 @@ function buildLikeCount() {
     xhr.onload = function () {
         if (xhr.status == 200) {
             countSpan.innerHTML = xhr.responseText;
+        }
+        else if (xhr.status == 404) {
+            countSpan.innerHTML = "0";
         }
     };
     xhr.send();
