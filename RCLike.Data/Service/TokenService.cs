@@ -16,7 +16,7 @@ namespace RCLike.Data.Service
         {
             _secret = secret;
         }
-
+                
         public string DecodeToken(string token)
         {
             var tokenHandle = new JsonWebTokenHandler();
@@ -25,8 +25,7 @@ namespace RCLike.Data.Service
             if (result.IsValid && result.Claims.ContainsKey("email"))
                 return result.Claims.SingleOrDefault(c => c.Key == "email").Value.ToString();
             else            
-                return null;
-                        
+                return null;                        
         }
 
         public string GenerateToken(string email)
@@ -47,8 +46,8 @@ namespace RCLike.Data.Service
             };
                         
             return tokenHandle.CreateToken(tokenDescriptor);
-        }                           
-
+        }
+              
         private TokenValidationParameters ValidationParameters() =>
             new TokenValidationParameters
             {

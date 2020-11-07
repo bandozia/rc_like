@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RCLike.Data.Models;
 using RCLike.Data.Repositories;
 using RCLike.Data.Service;
 using System;
@@ -14,8 +15,8 @@ namespace RCLike.API.Controllers
     public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
-        
-        public LikeController(ILikeService likeService, ITokenService tokenService)
+                
+        public LikeController(ILikeService likeService)
         {
             _likeService = likeService;            
         }
@@ -30,8 +31,7 @@ namespace RCLike.API.Controllers
                 return NotFound();
         }
 
-
-        [HttpGet("like")]
+        [HttpGet]
         public async Task<IActionResult> Like([FromQuery] string url, [FromQuery] string token)
         {
             try
@@ -43,8 +43,14 @@ namespace RCLike.API.Controllers
             {
                 return Unauthorized(ex.Message);
             }
-
         }
+
+        [HttpGet("validate-liker")]
+        public async Task<LikerValidation> ValidateLiker([FromQuery] string url, [FromQuery] string token)
+        {
+            return await _likeService.VlidateLiker(token, url);
+        }
+                
                 
     }
 }

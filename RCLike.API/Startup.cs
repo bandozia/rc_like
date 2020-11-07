@@ -36,6 +36,7 @@ namespace RCLike.API
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RC Like feature", Version = "v2" }));
 
             services.AddDbContext<AppDbContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("default")));
+            services.AddDistributedMemoryCache();
 
             services.AddScoped(AuthFactory.JWTTokenService);
 

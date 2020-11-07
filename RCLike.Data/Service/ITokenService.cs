@@ -6,7 +6,7 @@ using System.Text;
 namespace RCLike.Data.Service
 {
     public interface ITokenService
-    {
+    {        
         public string DecodeToken(string token);
         public string GenerateToken(string email);
     }

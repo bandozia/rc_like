@@ -10,6 +10,8 @@ namespace RCLike.Data.Service
     {
         public Task DoLike(string url, string token);
         public Task<int> GetLikeCount(string url);
-        
+        public Task<LikerValidation> VlidateLiker(string token, string url);
+
+
     }
 }

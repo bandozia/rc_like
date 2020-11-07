@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>1e0ed9cf-481b-426d-b01a-700ccfad9619</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost/swagger</DockerServiceUrl>
     <DockerServiceName>rclike.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

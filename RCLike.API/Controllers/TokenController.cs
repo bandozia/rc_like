@@ -22,5 +22,6 @@ namespace RCLike.API.Controllers
         {
             return _tokenService.GenerateToken(email);
         }
+
     }
 }
