@@ -9,7 +9,8 @@ These items would not be part of a production scenario. They are there to facili
 - there are 2 static htmls to test the flow with valid tokens and without a token, for the swagger that allows you to test all endpoints individually.
 - To avoid downloading an unecessary Redis image for the tests, the distributed memory cache will only use the host machine's memory. In the services, an abstraction was used so if a backplate is configured it will not be necessary to make code changes.
 
-### Architecture possibilities (simplified)
+### Architecture possibilities (simplified) bbbbb
+
 #### In cases where the customer who is going to consume the addiction does not own the service
 ![arch1](docs/architeture_1.jpg)
 In this scenario, the service must have its own load balancer. The API would be clustered and scaled horizontally as needed to maintain high availability
